@@ -14,14 +14,14 @@ const problem = document.getElementById("problem")
 //   })
 // })
 
-const difficulty = document.getElementById("difficulty")
-chrome.storage.local.get(['all','blind','neet','difficulty'],(res=>{
+const set = document.getElementById("set")
+chrome.storage.local.get(['all','blind','neet','set'],(res=>{
   problem.textContent = res.neet[0].category
-  difficulty.value = res.difficulty
+  set.value = res.set
 }))
 
 submitBtn.addEventListener('click',()=>{
   chrome.storage.local.set({
-    difficulty: difficulty.value
+    set: set.value
   })
 })

@@ -31,12 +31,10 @@ chrome.runtime.onInstalled.addListener((details)=>{
 
 chrome.storage.local.get(['all','blind','neet'],(res=>{
   problems = [res.all,res.blind,res.neet]
-  diff = res.difficulty
 }))
 
 let problems = []
-let diff = null 
-let status = true
+let set = null 
 
 chrome.alarms.create({
   periodInMinutes: 1/60,
@@ -44,7 +42,7 @@ chrome.alarms.create({
 
 chrome.alarms.onAlarm.addListener((alarm)=>{
   currentTab()
-  checkDifficulty()
+  checkSet()
 })
 
 
@@ -59,8 +57,8 @@ const currentTab = () => {
         return tabs[0].url.includes(item)
       })
       if(!exceptions){
-        const rand = randomizer(problems[diff].length)
-        // chrome.tabs.update({url: `${problems[diff][rand].href}`})
+        const rand = randomizer(problems[set].length)
+        chrome.tabs.update({url: `${problems[set][rand].href}`})
       }
     } catch (error) {
       console.log(error)
@@ -72,16 +70,16 @@ const currentTab = () => {
 //     status = res.status
 //   })
 // }
-const checkDifficulty = () => {
-  chrome.storage.local.get(['difficulty'],(res=>{
-    if(res.difficulty === 'All'){
-      diff = 0
+const checkSet = () => {
+  chrome.storage.local.get(['set'],(res=>{
+    if(res.set === 'All'){
+      set = 0
     }
-    else if(res.difficulty === 'Blind'){
-      diff = 1
+    else if(res.set === 'Blind'){
+      set = 1
     }
     else{
-      diff = 2
+      set = 2
     }
   }))
 }
