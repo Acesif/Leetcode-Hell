@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Leetcode Hell",
+  "description": "This will make your browsing life hell by forcing you to do leetcode everyday",
+  "icons": {
+    "16": "./icons/hell.png",
+    "48": "./icons/hell.png",
+    "128": "./icons/hell.png"
+  },
+  "version": "1.0.0",
+  "background" : {
+    "service_worker" : "./service-worker.js",
+    "type" : "module"
+  },
+  "action" : {
+    "default_icon": {
+    "16": "./icons/hell.png",
+    "24": "./icons/hell.png",
+    "32": "./icons/hell.png"
+    },
+    "default_title": "Leetcode Hell",
+    "default_popup" : "popup/index.html"
+  },
+  "permissions" : [
+    "activeTab",
+    "tabs",
+    "storage",
+    "alarms"
+  ],
+  "content_scripts" : [
+    {
+      "js" : [
+        "scripts/content-script.js"
+      ],
+      "matches" : [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
