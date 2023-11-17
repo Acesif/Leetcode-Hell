@@ -4,17 +4,23 @@
     <title></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="./index.css" rel="stylesheet">
   </head>
   <body>
-    <h1 id="problem">Haha</h1> 
-    <label for="set">Choose a Set:</label>
-    <select name="set" id="set">
-      <option value="All">All</option>
-      <option value="Blind">Blind 75</option>
-      <option value="Neet">Neetcode 150</option>
-    </select>
-    <button id="submit-btn">submit</button>
+    <div>
+      <button id="option">⚙️ </button>
+    </div>
+    <div>
+      <h2>Problem:</h2>
+      <div id="problem"></div> 
+      <label for="set">Choose a Set:</label>
+      <select name="set" id="set">
+        <option value="0">All</option>
+        <option value="1">Blind 75</option>
+        <option value="2">Neetcode 150</option>
+      </select>
+      <button id="submit-btn">submit</button>
+    </div>
     <script src="index.js"></script>
   </body>
 </html>

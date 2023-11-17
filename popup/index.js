@@ -16,8 +16,13 @@ const problem = document.getElementById("problem")
 
 const set = document.getElementById("set")
 chrome.storage.local.get(['all','blind','neet','set'],(res=>{
-  problem.textContent = res.neet[0].category
   set.value = res.set
+  chrome.runtime.onMessage.addListener((message,sender,sendResponse)=>{
+    const sets = [res.all,res.blind,res.neet]
+    const title = sets[set.value][message].text
+    const href = sets[set.value][message].href
+    problem.innerHTML = `<a href=${href} target="_blank"><h3>${title}</h3></a>` 
+  })
 }))
 
 submitBtn.addEventListener('click',()=>{
@@ -25,3 +30,4 @@ submitBtn.addEventListener('click',()=>{
     set: set.value
   })
 })
+
