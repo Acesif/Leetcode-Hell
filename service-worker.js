@@ -39,18 +39,19 @@ chrome.storage.local.get(['all','blind','neet'],(res=>{
 
 let problems = [] 
 let set = 0 
+let rand;
 chrome.alarms.create({
   periodInMinutes: 1/60,
 })
 
 chrome.alarms.onAlarm.addListener((alarm)=>{
   currentTab()
-  checkSet()
 })
 
 const checkSet = () => {
   chrome.storage.local.get(['set'],(res=>{
     set = Number(res.set)
+    rand = randomizer(problems[set].length)
   }))
 }
 
@@ -58,8 +59,10 @@ const randomizer = (len) => {
   return Math.floor(Math.random()*len)
 }
 const keywords = ["https://leetcode.com/","brave://extensions","chrome://extensions","edge://extensions"]
+
+checkSet()
+
 const currentTab = () => {
-  const rand = randomizer(problems[set].length)
   chrome.runtime.sendMessage(rand)
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     try {
