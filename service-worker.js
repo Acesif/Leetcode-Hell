@@ -28,10 +28,6 @@ chrome.runtime.onInstalled.addListener((details)=>{
       })   
   })
 })
-// chrome.windows.onCreated.addListener(()=>{
-//   const d = new Date()
-//   console.log("created",d.getMinutes())
-// })
 
 chrome.storage.local.get(['all','blind','neet'],(res=>{
   problems = [res.all,res.blind,res.neet]
@@ -61,9 +57,16 @@ const randomizer = (len) => {
 const keywords = ["https://leetcode.com/","brave://extensions","chrome://extensions","edge://extensions"]
 
 checkSet()
+setInterval(() => {
+  checkSet()
+}, 3000);
+// 86400000
 
 const currentTab = () => {
-  chrome.runtime.sendMessage(rand)
+  chrome.runtime.sendMessage({rand})
+  chrome.runtime.onMessage.addListener((message)=>{
+    checkSet()
+  })
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     try {
       const exceptions = keywords.some((item)=>{
