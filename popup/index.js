@@ -15,6 +15,7 @@ const problem = document.getElementById("problem")
 // })
 
 const set = document.getElementById("set")
+const interval = document.getElementById("interval")
 chrome.storage.local.get(['all','blind','neet','set'],(res=>{
   set.value = res.set
   chrome.runtime.onMessage.addListener((message,sender,sendResponse)=>{
@@ -27,7 +28,8 @@ chrome.storage.local.get(['all','blind','neet','set'],(res=>{
 
 submitBtn.addEventListener('click',()=>{
   chrome.storage.local.set({
-    set: set.value
+    set: set.value,
+    interval: interval.value
   })
   chrome.runtime.sendMessage(null)
 })

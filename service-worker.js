@@ -36,12 +36,14 @@ chrome.storage.local.get(['all','blind','neet'],(res=>{
 let problems = [] 
 let set = 0 
 let rand;
+let interval = 24;
 chrome.alarms.create({
   periodInMinutes: 1/60,
 })
 
 chrome.alarms.onAlarm.addListener((alarm)=>{
   currentTab()
+  getInterval()
 })
 
 const checkSet = () => {
@@ -56,10 +58,15 @@ const randomizer = (len) => {
 }
 const keywords = ["https://leetcode.com/","brave://extensions","chrome://extensions","edge://extensions"]
 
+const getInterval = () => {
+  chrome.storage.get(['interval'],(res)=>{
+    interval = res.interval
+  })
+}
 checkSet()
 setInterval(() => {
   checkSet()
-}, 3000);
+}, interval*60*60*1000);
 // 86400000
 
 const currentTab = () => {
