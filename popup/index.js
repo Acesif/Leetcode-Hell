@@ -15,6 +15,10 @@ const problem = document.getElementById("problem")
 // })
 
 const set = document.getElementById("set")
+<<<<<<< HEAD
+=======
+const interval = document.getElementById("interval")
+>>>>>>> parent of e3571f9 (rebuilding extension)
 chrome.storage.local.get(['all','blind','neet','set'],(res=>{
   set.value = res.set
   chrome.runtime.onMessage.addListener((message,sender,sendResponse)=>{
@@ -27,7 +31,12 @@ chrome.storage.local.get(['all','blind','neet','set'],(res=>{
 
 submitBtn.addEventListener('click',()=>{
   chrome.storage.local.set({
+<<<<<<< HEAD
     set: set.value
+=======
+    set: set.value,
+    interval: interval.value
+>>>>>>> parent of e3571f9 (rebuilding extension)
   })
   chrome.runtime.sendMessage(null)
 })

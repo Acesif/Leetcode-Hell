@@ -26,5 +26,15 @@
     "tabs",
     "storage",
     "alarms"
+  ],
+  "content_scripts" : [
+    {
+      "js" : [
+        "scripts/content-script.js"
+      ],
+      "matches" : [
+        "<all_urls>"
+      ]
+    }
   ]
 }

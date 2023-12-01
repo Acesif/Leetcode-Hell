@@ -36,12 +36,20 @@ chrome.storage.local.get(['all','blind','neet'],(res=>{
 let problems = [] 
 let set = 0 
 let rand;
+<<<<<<< HEAD
+=======
+let interval = 24;
+>>>>>>> parent of e3571f9 (rebuilding extension)
 chrome.alarms.create({
   periodInMinutes: 1/60,
 })
 
 chrome.alarms.onAlarm.addListener((alarm)=>{
   currentTab()
+<<<<<<< HEAD
+=======
+  getInterval()
+>>>>>>> parent of e3571f9 (rebuilding extension)
 })
 
 const checkSet = () => {
@@ -56,10 +64,22 @@ const randomizer = (len) => {
 }
 const keywords = ["https://leetcode.com/","brave://extensions","chrome://extensions","edge://extensions"]
 
+<<<<<<< HEAD
 checkSet()
 setInterval(() => {
   checkSet()
 }, 3000);
+=======
+const getInterval = () => {
+  chrome.storage.get(['interval'],(res)=>{
+    interval = res.interval
+  })
+}
+checkSet()
+setInterval(() => {
+  checkSet()
+}, interval*60*60*1000);
+>>>>>>> parent of e3571f9 (rebuilding extension)
 // 86400000
 
 const currentTab = () => {
