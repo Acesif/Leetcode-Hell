@@ -26,15 +26,5 @@
     "tabs",
     "storage",
     "alarms"
-  ],
-  "content_scripts" : [
-    {
-      "js" : [
-        "scripts/content-script.js"
-      ],
-      "matches" : [
-        "https://leetcode.com/*"
-      ]
-    }
   ]
 }
