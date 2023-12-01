@@ -8,6 +8,10 @@
     "128": "./icons/hell.png"
   },
   "version": "1.0.0",
+  "background" : {
+    "service_worker" : "./service-worker.js",
+    "type" : "module"
+  },
   "action" : {
     "default_icon": {
     "16": "./icons/hell.png",
@@ -16,5 +20,21 @@
     },
     "default_title": "Leetcode Hell",
     "default_popup" : "popup/index.html"
-  }
+  },
+  "permissions" : [
+    "activeTab",
+    "tabs",
+    "storage",
+    "alarms"
+  ],
+  "content_scripts" : [
+    {
+      "js" : [
+        "scripts/content-script.js"
+      ],
+      "matches" : [
+        "https://leetcode.com/*"
+      ]
+    }
+  ]
 }
